@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context="com.hps.esecure.appflowsimulator.settings.SettingsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="Interface"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+        <CheckBox
+            android:id="@+id/interface_native"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Native" />
+
+        <CheckBox
+            android:id="@+id/interface_html"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HTML" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="UI type"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+        <CheckBox
+            android:id="@+id/uitype_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text" />
+
+        <CheckBox
+            android:id="@+id/uitype_single_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single select" />
+
+        <CheckBox
+            android:id="@+id/uitype_multi_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Multi Select" />
+
+        <CheckBox
+            android:id="@+id/uitype_oob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OOB" />
+
+        <CheckBox
+            android:id="@+id/uitype_html_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HTML other" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="ACS URL"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <EditText
+            android:id="@+id/acsurl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="ACS URL (Areq), retrieved from the DS" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="DS URL (for RReq)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <EditText
+            android:id="@+id/dsurl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="DS URL (Areq), retrieved from the DS" />
+
+
+        <Button
+            android:id="@+id/save"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Save" />
+
+    </LinearLayout>
+
+</ScrollView>
+

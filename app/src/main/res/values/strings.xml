@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">HPS App Flow Simulator</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_challenge">Challenge Activity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_default_acsurl">https://10.0.2.2:8443/acs-3ds-ui/authenticationRequestServlet</string>
+    <string name="pref_default_dsurl">https://10.0.2.2:8443/acs-simulator/dummyDSServlet</string>
+    <string name="check_out">Check out</string>
+
+    <string name="authenticate">Authenticate</string>
+
+
+</resources>
