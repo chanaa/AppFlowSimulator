@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -131,10 +132,14 @@ public class AuthenticationActivity extends AppCompatActivity {
         aReq.setThreeDSRequestorName("XXXXXXXXXXX");
         aReq.setThreeDSRequestorURL("http://www.example.com");
         aReq.setThreeDSServerRefNumber("XXXXXXXXXXX");
-
+        aReq.setMerchantName("Amazone");
+        aReq.setThreeDSRequestorAuthenticationInd("01");
         UUID threeDSServerTransID = UUID.randomUUID();
         aReq.setThreeDSServerTransID(threeDSServerTransID.toString());
-
+   aReq.setShipAddrCountry("840");
+   aReq.setBillAddrCountry("840");
+        aReq.setMerchantCountryCode("840");
+        aReq.setMcc("ABCD");
         aReq.setThreeDSServerURL("http://www.example.com");
 
         UUID dsTransID = UUID.randomUUID();
@@ -149,7 +154,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         if (AReq.MESSAGECATEGORY_NPA.equals(messageCategory)){ // NPA
             aReq.setMessageCategory(AReq.MESSAGECATEGORY_NPA);
-            aReq.setThreeDSRequestorNPAInd(AReq.THREEDSREQUESTORNPAIND_ADD_CARD);
+           // aReq.setThreeDSRequestorNPAInd("01");
         } else { // PA
             aReq.setMessageCategory(AReq.MESSAGECATEGORY_PA);
 
@@ -157,7 +162,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             aReq.setAcquirerMerchantID("XXXXXX");
             aReq.setPurchaseAmount(productPrice.getText().toString());
             aReq.setPurchaseCurrency("840");
-            aReq.setPurchaseExponent("0");
+            aReq.setPurchaseExponent("2");
             aReq.setPurchaseDate("20170807201622");
 
         }
@@ -229,14 +234,19 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     }
 
-    private String generateEphemeralPublicKey() throws JOSEException, UnsupportedEncodingException {
+    private AReq.SdkEphemPubKey  generateEphemeralPublicKey() throws JOSEException, UnsupportedEncodingException {
         AppFlowCryptoService appFlowCryptoHelper = new AppFlowCryptoService();
         ECParameterSpec ecParameterSpec = Curve.P_256.toECParameterSpec();
         keyPair = appFlowCryptoHelper.generateEphemeralKeyPair(ecParameterSpec);
 
         ECKey qC = new ECKey.Builder(Curve.P_256, (ECPublicKey) keyPair.getPublic()).build();
-
-        return qC.toJSONString();
+        AReq areq=new AReq();
+        AReq.SdkEphemPubKey sdkkey = areq.new SdkEphemPubKey();
+        sdkkey.setCrv(qC.getCurve().toString());
+        sdkkey.setKty(qC.getKeyType().toString());
+        sdkkey.setY(qC.getY().toString());
+        sdkkey.setX(qC.getX().toString());
+        return sdkkey;
     }
 
     private class SendAreqAsyncTask extends AsyncTask<String, Integer, String> {
@@ -282,9 +292,12 @@ public class AuthenticationActivity extends AppCompatActivity {
                         String content = jwsValidateSignatureAndReturnBody(acsSignedContent);
 
                         net.minidev.json.JSONObject parse = JSONObjectUtils.parse(content);
-                        String acsEphemPubKey = (String) parse.get("acsEphemPubKey");
-                        String acsurl = (String) parse.get("ACSURL");
+                        Gson gson1=new Gson();
+                        String acsEphemPubKey=gson1.toJson(parse.get("acsEphemPubKey"));
 
+                        //String acsEphemPubKey = (String) parse.get("acsEphemPubKey");
+                       // String acsurl = (String) parse.get("ACSURL");
+                        String acsurl="https://dev.acpqualife.com/3Dsecure/acsauthentication/customerChallengeAppServlet";
                         JWK acsEphemPubKeyJwk = JWK.parse(acsEphemPubKey);
 
                         ECPrivateKey dC = (ECPrivateKey) keyPair.getPrivate();
@@ -312,6 +325,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                     finish();
                 }
             } catch (Exception e){
+              displayException(e.getMessage());
                 e.printStackTrace();
 
                 Intent myIntent = new Intent(AuthenticationActivity.this, ErrorActivity.class);
@@ -324,6 +338,10 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
     }
 
+    public void displayException(String message)
+    {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
 
     private void sendAreq(String acsUrl, String content){
 
