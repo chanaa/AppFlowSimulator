@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hps.esecure.appflowsimulator.settings.SettingsActivity;
 import com.hps.esecure.common.security.emv.crypto.impl.AppFlowCryptoService;
+import com.hps.esecure.common.utils.JSONSenderAppUtils;
 import com.hps.esecure.common.utils.JSONSenderUtilsSim;
 import com.hps.esecure.model.emv.dto.network.ARes;
 import com.hps.esecure.model.emv.dto.network.CReq;
@@ -263,7 +264,7 @@ public class ChallengeActivity extends AppCompatActivity implements SDKWebView.S
 
         @Override
         protected String doInBackground(String... params) {
-            JSONSenderUtilsSim jsonSenderUtilsSim = new JSONSenderUtilsSim(LoggerFactory.getLogger(JSONSenderUtilsSim.class));
+            JSONSenderAppUtils jsonSenderUtilsSim = new JSONSenderAppUtils(LoggerFactory.getLogger(JSONSenderUtilsSim.class));
             return jsonSenderUtilsSim.sendPostRequest(params[0], params[1]);
         }
 
