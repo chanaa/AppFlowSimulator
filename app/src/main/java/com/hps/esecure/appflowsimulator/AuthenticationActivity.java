@@ -46,7 +46,9 @@ import org.slf4j.LoggerFactory;
 import java.io.UnsupportedEncodingException;
 import java.security.KeyPair;
 import java.security.cert.CertPath;
-import java.security.cert.CertPathValidator;
+import java.security.cert.CertPathV
+
+alidator;
 import java.security.cert.CertificateFactory;
 import java.security.cert.PKIXParameters;
 import java.security.interfaces.ECPrivateKey;
@@ -160,7 +162,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
             aReq.setAcquirerBIN("XXXXXX");
             aReq.setAcquirerMerchantID("XXXXXX");
-            aReq.setPurchaseAmount(productPrice.getText().toString());
+            aReq.setPurchaseAmount(productPrice.getText().toString()+"00");
             aReq.setPurchaseCurrency("840");
             aReq.setPurchaseExponent("2");
             aReq.setPurchaseDate("20170807201622");
