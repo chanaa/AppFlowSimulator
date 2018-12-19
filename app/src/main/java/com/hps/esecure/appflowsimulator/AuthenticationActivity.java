@@ -46,9 +46,7 @@ import org.slf4j.LoggerFactory;
 import java.io.UnsupportedEncodingException;
 import java.security.KeyPair;
 import java.security.cert.CertPath;
-import java.security.cert.CertPathV
-
-alidator;
+import java.security.cert.CertPathValidator;
 import java.security.cert.CertificateFactory;
 import java.security.cert.PKIXParameters;
 import java.security.interfaces.ECPrivateKey;
