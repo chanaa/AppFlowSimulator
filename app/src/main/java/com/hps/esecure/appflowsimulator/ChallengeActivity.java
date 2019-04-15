@@ -106,7 +106,7 @@ public class ChallengeActivity extends AppCompatActivity implements SDKWebView.S
         byte[] secretEncoded = getIntent().getExtras().getByteArray("secret");
         acsUrl = getIntent().getExtras().getString("acsurl");
 
-        secretKey = new SecretKeySpec(secretEncoded, "AES");
+        secretKey = new SecretKeySpec(secretEncoded, "RSA");
 
         JsonEmvDeserializer jsonEmvDeserializer = new JsonEmvDeserializer(LoggerFactory.getLogger(JsonEmvDeserializer.class));
         jsonEmvDeserializer.setTestMode(true);
