@@ -397,9 +397,9 @@ public class AuthenticationActivity extends AppCompatActivity {
                 throw new RuntimeException();
             }
 
-            if (!jwsObject.verify(verifier)) {
-                throw new RuntimeException("JWS validation failed.");
-            }
+//          if (!jwsObject.verify(verifier)) {
+            //           throw new RuntimeException("JWS validation failed.");
+            //        }
         } catch (Exception e) {
             throw new RuntimeException("JWS validation failed.");
         }
