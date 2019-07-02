@@ -308,7 +308,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                         myIntent.putExtra("secret", secretKey.getEncoded());
                         myIntent.putExtra("ares", result);
                         myIntent.putExtra("acsurl", acsurl);
-                          Toast.makeText(this,acsurl,Toast.LENGTH_SHORT).show();
+                          //Toast.makeText(this,acsurl,Toast.LENGTH_SHORT).show();
                        // AuthenticationActivity.this.startActivity(myIntent);
                     } else if (ARes.TRANSSTATUS_Y.equals(ares.getTransStatus())){
                         Intent myIntent = new Intent(AuthenticationActivity.this, SuccessActivity.class);
