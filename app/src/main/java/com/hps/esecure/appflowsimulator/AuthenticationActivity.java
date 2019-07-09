@@ -297,7 +297,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                         String acsEphemPubKey=gson1.toJson(parse.get("acsEphemPubKey"));
 
                         //String acsEphemPubKey = (String) parse.get("acsEphemPubKey");
-                        String acsurl = (String) parse.get("ACSURL");
+                        String acsurl = (String) parse.get("acsURL");
                        // String acsurl="https://dev.acpqualife.com/3Dsecure/acsauthentication/customerChallengeAppServlet";
                         JWK acsEphemPubKeyJwk = JWK.parse(acsEphemPubKey);
 
